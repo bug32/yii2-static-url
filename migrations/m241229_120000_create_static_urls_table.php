@@ -26,21 +26,21 @@ class m241229_120000_create_static_urls_table extends Migration
             'url' => 'about-us',
             'controller' => 'site',
             'action' => 'about',
-            'params' => json_encode([]),
+            'params' => [],
             'status' => 10,
         ]);
         $this->insert('{{%static_urls}}', [
             'url' => 'contact',
             'controller' => 'site',
             'action' => 'contact',
-            'params' => json_encode([]),
+            'params' => [],
             'status' => 10,
         ]);
         $this->insert('{{%static_urls}}', [
             'url' => 'terms',
             'controller' => 'site',
             'action' => 'terms',
-            'params' => json_encode([]),
+            'params' => [],
             'status' => 10,
         ]);
     }
