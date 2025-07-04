@@ -1,0 +1,54 @@
+{
+    "name": "bug32/yii2-static-url",
+    "description": "Yii2 extension for managing static URLs with database storage and automatic URL routing",
+    "type": "yii2-extension",
+    "keywords": [
+        "yii2",
+        "extension",
+        "static-url",
+        "url-management",
+        "routing",
+        "seo-friendly-urls"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Artem Kikot",
+            "email": "orelli@yandex.ru",
+            "homepage": "https://im-yours.site"
+        }
+    ],
+    "support": {
+        "source": "https://github.com/bug32/yii2-static-url",
+        "email": "info@im-yours.site"
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "require": {
+        "php": ">=8.0.0",
+        "yiisoft/yii2": "~2.0.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.0",
+        "yiisoft/yii2-debug": "~2.1.0",
+        "yiisoft/yii2-gii": "~2.2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "bug32\\staticUrl\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "bug32\\staticUrl\\tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "bootstrap": "bug32\\staticUrl\\StaticUrlExtension"
+    },
+    "config": {
+        "allow-plugins": {
+            "yiisoft/yii2-composer": true
+        }
+    }
+} 
