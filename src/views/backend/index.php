@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel vcruis\staticUrl\models\StaticUrl */
+/* @var $searchModel bug32\staticUrl\models\StaticUrl */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Статические URL';

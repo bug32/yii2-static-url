@@ -18,7 +18,7 @@ use yii\helpers\Json;
  * @property string $created_at
  * @property string $updated_at
  *
- * @package vcruis\staticUrl\models
+ * @package bug32\staticUrl\models
  */
 class StaticUrl extends ActiveRecord
 {

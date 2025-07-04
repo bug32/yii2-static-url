@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model vcruis\staticUrl\models\StaticUrl */
+/* @var $model bug32\staticUrl\models\StaticUrl */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 <div class="static-url-form">

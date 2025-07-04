@@ -1,8 +1,8 @@
 # Yii2 Static URL Extension
 
-[![Latest Stable Version](https://poser.pugx.org/vcruis/yii2-static-url/v/stable)](https://packagist.org/packages/vcruis/yii2-static-url)
-[![Total Downloads](https://poser.pugx.org/vcruis/yii2-static-url/downloads)](https://packagist.org/packages/vcruis/yii2-static-url)
-[![License](https://poser.pugx.org/vcruis/yii2-static-url/license)](https://packagist.org/packages/vcruis/yii2-static-url)
+[![Latest Stable Version](https://poser.pugx.org/bug32/yii2-static-url/v/stable)](https://packagist.org/packages/bug32/yii2-static-url)
+[![Total Downloads](https://poser.pugx.org/bug32/yii2-static-url/downloads)](https://packagist.org/packages/bug32/yii2-static-url)
+[![License](https://poser.pugx.org/bug32/yii2-static-url/license)](https://packagist.org/packages/bug32/yii2-static-url)
 
 Yii2 extension for managing static URLs with database storage and automatic URL routing integration.
 
@@ -22,7 +22,7 @@ Yii2 extension for managing static URLs with database storage and automatic URL 
 ### Via Composer
 
 ```bash
-composer require vcruis/yii2-static-url
+composer require bug32/yii2-static-url
 ```
 
 ### Manual Installation
@@ -35,7 +35,7 @@ composer require vcruis/yii2-static-url
 {
     "autoload": {
         "psr-4": {
-            "vcruis\\staticUrl\\": "extensions/static-url/src/"
+            "bug32\\staticUrl\\": "extensions/static-url/src/"
         }
     }
 }
@@ -54,7 +54,7 @@ Add the extension to your application configuration:
 return [
     'bootstrap' => [
         'staticUrl' => [
-            'class' => 'vcruis\\staticUrl\\StaticUrlExtension',
+            'class' => 'bug32\\staticUrl\\StaticUrlExtension',
         ],
     ],
     // ... other config
@@ -70,7 +70,7 @@ For backend management interface:
 return [
     'modules' => [
         'static-url' => [
-            'class' => 'vcruis\\staticUrl\\StaticUrlExtension',
+            'class' => 'bug32\\staticUrl\\StaticUrlExtension',
         ],
     ],
     // ... other config
@@ -88,7 +88,7 @@ You can fine-tune the module for different environments and needs:
 return [
     'components' => [
         'staticUrlRule' => [
-            'class' => 'vcruis\\staticUrl\\components\\StaticUrlRule',
+            'class' => 'bug32\\staticUrl\\components\\StaticUrlRule',
             // 'cacheEnabled' => true,           // Enable/disable caching
             // 'cacheDuration' => 3600,          // Cache lifetime in seconds
             // 'autoClearCache' => true,         // Auto-clear cache on changes
@@ -96,7 +96,7 @@ return [
     ],
     'modules' => [
         'static-url' => [
-            'class' => 'vcruis\\staticUrl\\StaticUrlExtension',
+            'class' => 'bug32\\staticUrl\\StaticUrlExtension',
             // 'adminRoute' => 'static-url/backend',
             // 'enableConsoleCommands' => true,  // Enable console commands
             // 'enableAdminInterface' => true,   // Enable admin interface
@@ -114,7 +114,7 @@ return [
 return [
     'bootstrap' => [
         'staticUrl' => [
-            'class' => 'vcruis\\staticUrl\\StaticUrlExtension',
+            'class' => 'bug32\\staticUrl\\StaticUrlExtension',
             'enableAdminInterface' => false, // Disable admin in production
             'cacheEnabled' => true,
             'cacheDuration' => 7200, // 2 hours
@@ -130,7 +130,7 @@ return [
 return [
     'bootstrap' => [
         'staticUrl' => [
-            'class' => 'vcruis\\staticUrl\\StaticUrlExtension',
+            'class' => 'bug32\\staticUrl\\StaticUrlExtension',
             'enableAdminInterface' => true,
             'cacheEnabled' => false, // Disable cache for development
             'autoClearCache' => true,
@@ -146,7 +146,7 @@ return [
 return [
     'bootstrap' => [
         'staticUrl' => [
-            'class' => 'vcruis\\staticUrl\\StaticUrlExtension',
+            'class' => 'bug32\\staticUrl\\StaticUrlExtension',
             'enableConsoleCommands' => true,
             'enableAdminInterface' => false,
         ],
@@ -194,7 +194,7 @@ return [
 Run the migration to create the required table:
 
 ```bash
-php yii migrate --migrationPath=@vendor/vcruis/yii2-static-url/migrations
+php yii migrate --migrationPath=@vendor/bug32/yii2-static-url/migrations
 ```
 
 ## Usage
@@ -366,9 +366,9 @@ This extension is released under the MIT License. See [LICENSE](LICENSE) for det
 
 ## Support
 
-- [Issues](https://github.com/vcruis/yii2-static-url/issues)
-- [Email](mailto:info@vcruis.online)
-- [Website](https://vcruis.online)
+- [Issues](https://github.com/bug32/yii2-static-url/issues)
+- [Email](mailto:info@bug32.online)
+- [Website](https://bug32.online)
 
 ## Changelog
 
