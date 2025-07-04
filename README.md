@@ -27,21 +27,9 @@ composer require bug32/yii2-static-url
 
 ### Manual Installation
 
-1. Download the extension
-2. Extract to your project's `extensions/` directory
-3. Add to your composer.json autoload section:
-
-```json
-{
-    "autoload": {
-        "psr-4": {
-            "bug32\\staticUrl\\": "extensions/static-url/src/"
-        }
-    }
-}
 ```
-
-4. Run `composer dump-autoload`
+composer require bug32/yii2-static-url
+```
 
 ## Configuration
 
@@ -166,8 +154,7 @@ return [
             'rules' => [
                 // Static URLs will be added automatically at the beginning
                 // Other rules remain unchanged
-                'cruises/<id:\d+>' => 'cruises/view',
-                'ships/<slug>' => 'ship/view',
+                '/' => 'site/index',
             ],
         ],
     ],
@@ -272,27 +259,27 @@ StaticUrlHelper::to('site/about'); // Returns 'about-us'
 
 ```php
 // Database record
-url: 'cruise/123'
-controller: 'cruises'
+url: 'post/123'
+controller: 'posts'
 action: 'view'
 params: '{"id": 123}'
 
 // Usage
-StaticUrlHelper::to('cruises/view', ['id' => 123]); // Returns 'cruise/123'
+StaticUrlHelper::to('posts/view', ['id' => 123]); // Returns 'post/123'
 ```
 
 ### Static URL with Additional Parameters
 
 ```php
 // Database record
-url: 'cruise/123'
-controller: 'cruises'
+url: 'post/123'
+controller: 'posts'
 action: 'view'
 params: '{"id": 123}'
 
 // Usage
-StaticUrlHelper::to('cruises/view', ['id' => 123, 'tab' => 'details']); 
-// Returns 'cruise/123?tab=details'
+StaticUrlHelper::to('posts/view', ['id' => 123, 'tab' => 'details']); 
+// Returns 'post/123?tab=details'
 ```
 
 ## API Reference
