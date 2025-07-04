@@ -67,9 +67,9 @@ class StaticUrlExtension extends Module implements BootstrapInterface
                     }
                 }
                 if (!$hasStaticRule) {
-                    array_unshift($app->urlManager->rules, [
+                    array_unshift($app->urlManager->rules, \Yii::createObject([
                         'class' => 'bug32\\staticUrl\\components\\StaticUrlRule',
-                    ]);
+                    ]));
                 }
             }
         } elseif ($app instanceof ConsoleApplication) {
