@@ -29,7 +29,13 @@ $this->params['breadcrumbs'][] = $this->title;
             'url:url',
             'controller',
             'action',
-            'params:ntext',
+            [
+                'attribute' => 'params',
+                'format'    => 'raw',
+                'value'     => function ($model) {
+                    return '<pre>' . print_r($model->params, true) . '</pre>';
+                }
+            ],
             [
                 'attribute' => 'status',
                 'value' => $model->getStatusList()[$model->status] ?? 'Неизвестно',

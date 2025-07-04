@@ -71,7 +71,7 @@ class StaticUrlRule extends BaseObject implements UrlRuleInterface
             }
             return [$urlData['controller'] . '/' . $urlData['action'], $params];
         }
-        return false;
+        return NULL;
     }
 
     public function createUrl($manager, $route, $params)
