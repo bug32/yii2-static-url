@@ -69,7 +69,7 @@ class StaticUrlRule extends BaseObject implements UrlRuleInterface
                     $params[$key] = $value;
                 }
             }
-            return [$urlData['controller'] . '/' . $urlData['action'], $params];
+            return [$urlData['controller'] . '/' . $urlData['action'], (array)$params];
         }
         return NULL;
     }
