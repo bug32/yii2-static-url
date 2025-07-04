@@ -1,57 +1,65 @@
 # Yii2 Static URL Extension
 
-[![Latest Stable Version](https://poser.pugx.org/bug32/yii2-static-url/v/stable)](https://packagist.org/packages/bug32/yii2-static-url)
-[![Total Downloads](https://poser.pugx.org/bug32/yii2-static-url/downloads)](https://packagist.org/packages/bug32/yii2-static-url)
-[![License](https://poser.pugx.org/bug32/yii2-static-url/license)](https://packagist.org/packages/bug32/yii2-static-url)
+Yii2-расширение для управления статическими URL с хранением в базе данных и автоматической интеграцией с маршрутизацией URL.
 
-Yii2 extension for managing static URLs with database storage and automatic URL routing integration.
+## Возможности
 
-## Features
+- **Хранение в базе данных**: Сохраняет статические URL с контроллером, действием и параметрами.
+- **Автоматическая маршрутизация**: Бесшовная интеграция с urlManager Yii2.
+- **Кэширование**: Встроенное кэширование для оптимальной производительности.
+- **Админка**: Полноценный CRUD-интерфейс для управления статическими URL.
+- **Консольные команды**: Инструменты для управления через консоль.
+- **Вспомогательные функции**: Удобные хелперы для создания статических URL.
+- **SEO-дружелюбность**: Создание чистых, SEO-оптимизированных URL.
+- **Гибкие параметры**: Поддержка JSON-параметров и query-строк.
 
-- **Database Storage**: Store static URLs in database with controller, action, and parameters
-- **Automatic Routing**: Seamless integration with Yii2's urlManager
-- **Caching**: Built-in caching for optimal performance
-- **Admin Interface**: Full CRUD interface for managing static URLs
-- **Console Commands**: Command-line tools for management
-- **Helper Functions**: Easy-to-use helper for creating static URLs
-- **SEO Friendly**: Create clean, SEO-friendly URLs
-- **Flexible Parameters**: Support for JSON parameters and query strings
+## Установка
 
-## Installation
-
-### Via Composer
+### Через Composer
 
 ```bash
 composer require bug32/yii2-static-url
 ```
 
-### Manual Installation
+### Ручная установка
 
+1. Скачайте расширение.
+2. Распакуйте в директорию `extensions/` вашего проекта.
+3. Добавьте в секцию autoload вашего composer.json:
+
+```json
+{
+    "autoload": {
+        "psr-4": {
+            "bug32\\staticUrl\\": "extensions/static-url/src/"
+        }
+    }
+}
 ```
-composer require bug32/yii2-static-url
-```
 
-## Configuration
+4. Выполните `composer dump-autoload`.
 
-### Basic Setup
+## Конфигурация
 
-Add the extension to your application configuration:
+### Базовая настройка
+
+Добавьте расширение в конфиг приложения:
 
 ```php
-// frontend/config/main.php or backend/config/main.php
+// frontend/config/main.php или backend/config/main.php
 return [
     'bootstrap' => [
         'staticUrl' => [
             'class' => 'bug32\\staticUrl\\StaticUrlExtension',
         ],
     ],
-    // ... other config
+    // ... остальной конфиг
 ];
 ```
 
-### Backend Setup (Optional)
+### Настройка для backend (опционально)
 
-For backend management interface:
+Для административного интерфейса:
 
 ```php
 // backend/config/main.php
@@ -61,15 +69,15 @@ return [
             'class' => 'bug32\\staticUrl\\StaticUrlExtension',
         ],
     ],
-    // ... other config
+    // ... остальной конфиг
 ];
 ```
 
 ---
 
-### Advanced Configuration
+### Расширенная настройка
 
-You can fine-tune the module for different environments and needs:
+Вы можете тонко настроить модуль для разных окружений:
 
 ```php
 // extensions/static-url/src/config.php
@@ -77,25 +85,25 @@ return [
     'components' => [
         'staticUrlRule' => [
             'class' => 'bug32\\staticUrl\\components\\StaticUrlRule',
-            // 'cacheEnabled' => true,           // Enable/disable caching
-            // 'cacheDuration' => 3600,          // Cache lifetime in seconds
-            // 'autoClearCache' => true,         // Auto-clear cache on changes
+            // 'cacheEnabled' => true,           // Включить/выключить кэширование
+            // 'cacheDuration' => 3600,          // Время жизни кэша в секундах
+            // 'autoClearCache' => true,         // Автоочистка кэша при изменениях
         ],
     ],
     'modules' => [
         'static-url' => [
             'class' => 'bug32\\staticUrl\\StaticUrlExtension',
             // 'adminRoute' => 'static-url/backend',
-            // 'enableConsoleCommands' => true,  // Enable console commands
-            // 'enableAdminInterface' => true,   // Enable admin interface
-            // 'defaultStatus' => 10,            // Default status for new URLs
+            // 'enableConsoleCommands' => true,  // Включить консольные команды
+            // 'enableAdminInterface' => true,   // Включить админку
+            // 'defaultStatus' => 10,            // Статус по умолчанию для новых URL
             // 'urlValidationPattern' => '/^[a-z0-9\-_\/]+$/',
         ],
     ],
 ];
 ```
 
-#### Example: Production config
+#### Пример: Конфиг для production
 
 ```php
 // environments/prod/common/config/main.php
@@ -103,15 +111,15 @@ return [
     'bootstrap' => [
         'staticUrl' => [
             'class' => 'bug32\\staticUrl\\StaticUrlExtension',
-            'enableAdminInterface' => false, // Disable admin in production
+            'enableAdminInterface' => false, // Отключить админку в проде
             'cacheEnabled' => true,
-            'cacheDuration' => 7200, // 2 hours
+            'cacheDuration' => 7200, // 2 часа
         ],
     ],
 ];
 ```
 
-#### Example: Development config
+#### Пример: Конфиг для разработки
 
 ```php
 // environments/dev/common/config/main.php
@@ -120,14 +128,14 @@ return [
         'staticUrl' => [
             'class' => 'bug32\\staticUrl\\StaticUrlExtension',
             'enableAdminInterface' => true,
-            'cacheEnabled' => false, // Disable cache for development
+            'cacheEnabled' => false, // Отключить кэш для разработки
             'autoClearCache' => true,
         ],
     ],
 ];
 ```
 
-#### Example: Console config
+#### Пример: Консольный конфиг
 
 ```php
 // console/config/main.php
@@ -142,7 +150,7 @@ return [
 ];
 ```
 
-#### Example: urlManager integration
+#### Пример: интеграция с urlManager
 
 ```php
 // frontend/config/main.php
@@ -152,9 +160,10 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                // Static URLs will be added automatically at the beginning
-                // Other rules remain unchanged
-                '/' => 'site/index',
+                // Статические URL будут добавлены автоматически в начало
+                // Остальные правила остаются без изменений
+                'posts/<id:\d+>' => 'posts/view',
+                'ships/<slug>' => 'ship/view',
             ],
         ],
     ],
@@ -163,195 +172,195 @@ return [
 
 ---
 
-#### Available parameters
+#### Доступные параметры
 
-- `enableAdminInterface` (bool) — Enable/disable admin interface
-- `enableConsoleCommands` (bool) — Enable/disable console commands
-- `adminRoute` (string) — Route for admin interface
-- `defaultStatus` (int) — Default status for new URLs
-- `urlValidationPattern` (string) — Regex for URL validation
-- `cacheEnabled` (bool) — Enable/disable caching
-- `cacheDuration` (int) — Cache lifetime in seconds
-- `autoClearCache` (bool) — Auto-clear cache on changes
+- `enableAdminInterface` (bool) — Включить/выключить админку
+- `enableConsoleCommands` (bool) — Включить/выключить консольные команды
+- `adminRoute` (string) — Маршрут для админки
+- `defaultStatus` (int) — Статус по умолчанию для новых URL
+- `urlValidationPattern` (string) — Регулярка для проверки URL
+- `cacheEnabled` (bool) — Включить/выключить кэширование
+- `cacheDuration` (int) — Время жизни кэша в секундах
+- `autoClearCache` (bool) — Автоочистка кэша при изменениях
 
 ---
 
-## Database Migration
+## Миграция базы данных
 
-Run the migration to create the required table:
+Выполните миграцию для создания нужной таблицы:
 
 ```bash
 php yii migrate --migrationPath=@vendor/bug32/yii2-static-url/migrations
 ```
 
-## Usage
+## Использование
 
-### In Views and Controllers
+### В представлениях и контроллерах
 
 ```php
 use bug32\staticUrl\helpers\StaticUrlHelper;
 
-// Create static URL
-$url = StaticUrlHelper::to('site/about'); // Returns 'about-us'
-$url = StaticUrlHelper::to('site/contact'); // Returns 'contact'
+// Создать статический URL
+$url = StaticUrlHelper::to('site/about'); // Вернет 'about-us'
+$url = StaticUrlHelper::to('site/contact'); // Вернет 'contact'
 
-// Create absolute URL
+// Создать абсолютный URL
 $absoluteUrl = StaticUrlHelper::toAbsolute('site/about');
 
-// Check if URL is static
+// Проверить, является ли URL статическим
 if (StaticUrlHelper::isStaticUrl('about-us')) {
-    echo 'This is a static URL';
+    echo 'Это статический URL';
 }
 
-// Get route for static URL
-$route = StaticUrlHelper::getRouteForUrl('about-us'); // Returns 'site/about'
+// Получить маршрут по статическому URL
+$route = StaticUrlHelper::getRouteForUrl('about-us'); // Вернет 'site/about'
 ```
 
-### Console Commands
+### Консольные команды
 
 ```bash
-# List all static URLs
+# Список всех статических URL
 php yii static-url/index
 
-# Clear cache
+# Очистить кэш
 php yii static-url/clear-cache
 
-# Create static URL
+# Создать статический URL
 php yii static-url/create "about-us" "site" "about" "{}"
 
-# Delete static URL
+# Удалить статический URL
 php yii static-url/delete 1
 ```
 
-### Admin Interface
+### Админка
 
-Access the admin interface at: `your-domain.com/static-url/backend/`
+Админка доступна по адресу: `your-domain.com/static-url/backend/`
 
-## Database Structure
+## Структура базы данных
 
-| Column | Type | Description |
-|--------|------|-------------|
-| id | int | Primary key |
-| url | varchar(255) | Static URL (unique) |
-| controller | varchar(100) | Controller name |
-| action | varchar(100) | Action name |
-| params | json | JSON parameters |
-| status | smallint | Status (10=active, 0=inactive) |
-| created_at | timestamp | Creation timestamp |
-| updated_at | timestamp | Update timestamp |
+| Колонка     | Тип           | Описание                        |
+|-------------|---------------|---------------------------------|
+| id          | int           | Первичный ключ                  |
+| url         | varchar(255)  | Статический URL (уникальный)    |
+| controller  | varchar(100)  | Имя контроллера                 |
+| action      | varchar(100)  | Имя действия                    |
+| params      | json          | JSON-параметры                  |
+| status      | smallint      | Статус (10=активен, 0=неактивен)|
+| created_at  | timestamp     | Дата создания                   |
+| updated_at  | timestamp     | Дата обновления                 |
 
-## Examples
+## Примеры
 
-### Basic Static URL
+### Базовый статический URL
 
 ```php
-// Database record
+// Запись в базе
 url: 'about-us'
 controller: 'site'
 action: 'about'
 params: '{}'
 
-// Usage
-StaticUrlHelper::to('site/about'); // Returns 'about-us'
+// Использование
+StaticUrlHelper::to('site/about'); // Вернет 'about-us'
 ```
 
-### Static URL with Parameters
+### Статический URL с параметрами
 
 ```php
-// Database record
+// Запись в базе
 url: 'post/123'
 controller: 'posts'
 action: 'view'
 params: '{"id": 123}'
 
-// Usage
-StaticUrlHelper::to('posts/view', ['id' => 123]); // Returns 'post/123'
+// Использование
+StaticUrlHelper::to('posts/view', ['id' => 123]); // Вернет 'post/123'
 ```
 
-### Static URL with Additional Parameters
+### Статический URL с дополнительными параметрами
 
 ```php
-// Database record
+// Запись в базе
 url: 'post/123'
 controller: 'posts'
 action: 'view'
 params: '{"id": 123}'
 
-// Usage
+// Использование
 StaticUrlHelper::to('posts/view', ['id' => 123, 'tab' => 'details']); 
-// Returns 'post/123?tab=details'
+// Вернет 'post/123?tab=details'
 ```
 
-## API Reference
+## API
 
 ### StaticUrlHelper
 
 #### `to(string $route, array $params = [], bool $scheme = false): string`
 
-Creates a static URL for the given route.
+Создает статический URL для указанного маршрута.
 
-- `$route`: Controller/action route (e.g., 'site/about')
-- `$params`: Additional parameters
-- `$scheme`: Whether to create absolute URL
+- `$route`: Маршрут контроллер/действие (например, 'site/about')
+- `$params`: Дополнительные параметры
+- `$scheme`: Создавать абсолютный URL
 
 #### `toAbsolute(string $route, array $params = []): string`
 
-Creates an absolute static URL.
+Создает абсолютный статический URL.
 
 #### `isStaticUrl(string $url): bool`
 
-Checks if the given URL is a static URL.
+Проверяет, является ли указанный URL статическим.
 
 #### `getRouteForUrl(string $url): ?string`
 
-Gets the route for a static URL.
+Получает маршрут для статического URL.
 
 #### `getAllStaticUrls(): array`
 
-Gets all active static URLs.
+Получает все активные статические URL.
 
-### StaticUrl Model
+### StaticUrl (модель)
 
 #### `getParamsArray(): array`
 
-Gets parameters as array.
+Получает параметры как массив.
 
 #### `setParamsArray(array $params): void`
 
-Sets parameters from array.
+Устанавливает параметры из массива.
 
 #### `getRoute(): string`
 
-Gets full route (controller/action).
+Получает полный маршрут (контроллер/действие).
 
 #### `getStatusList(): array`
 
-Gets list of available statuses.
+Получает список доступных статусов.
 
-## Performance
+## Производительность
 
-The extension uses in-memory caching for static URLs to ensure optimal performance. The cache is automatically cleared when URLs are modified through the admin interface or console commands.
+Расширение использует in-memory кэширование для статических URL для максимальной производительности. Кэш автоматически очищается при изменениях через админку или консольные команды.
 
-## Security
+## Безопасность
 
-- URL validation ensures only safe characters are allowed
-- Unique constraint prevents duplicate URLs
-- Status field allows temporary disabling of URLs
-- JSON parameters are validated on save
+- Валидация URL гарантирует, что разрешены только безопасные символы.
+- Уникальность URL предотвращает дублирование.
+- Статус позволяет временно отключать URL.
+- JSON-параметры валидируются при сохранении.
 
-## Contributing
+## Вклад
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests
-5. Submit a pull request
+1. Форкните репозиторий.
+2. Создайте ветку для новой фичи.
+3. Внесите изменения.
+4. Добавьте тесты.
+5. Оформите pull request.
 
-## License
+## Лицензия
 
-This extension is released under the MIT License. See [LICENSE](LICENSE) for details.
+Расширение распространяется под лицензией MIT. Подробнее см. [LICENSE](LICENSE).
 
-## Support
+## Поддержка
 
 - [Issues](https://github.com/bug32/yii2-static-url/issues)
 - [Email](mailto:info@bug32.online)
@@ -360,9 +369,9 @@ This extension is released under the MIT License. See [LICENSE](LICENSE) for det
 ## Changelog
 
 ### 1.0.0
-- Initial release
-- Basic static URL functionality
-- Admin interface
-- Console commands
-- Helper functions
-- Caching support 
+- Первый релиз
+- Базовая работа со статическими URL
+- Админка
+- Консольные команды
+- Вспомогательные функции
+- Поддержка кэширования 
