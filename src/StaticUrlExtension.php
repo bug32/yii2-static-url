@@ -24,7 +24,7 @@ class StaticUrlExtension extends Module implements BootstrapInterface
     /**
      * @inheritdoc
      */
-    public string $controllerNamespace = 'bug32\\staticUrl\\controllers';
+    public $controllerNamespace = 'bug32\\staticUrl\\controllers';
 
     /**
      * @inheritdoc
